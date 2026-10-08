@@ -25,7 +25,7 @@ int main(){
     }
 
     // printing the linked list 
-
+    cout << "Linked List: ";
     temp = head;
     while(temp != nullptr){
         cout << temp -> data << " ";
