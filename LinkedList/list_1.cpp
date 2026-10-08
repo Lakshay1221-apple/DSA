@@ -13,16 +13,25 @@ struct Node {
 
 int lenghtofll(Node* head){
     int count = 0;
-
     Node* temp = head;
 
     while (temp != nullptr) {
         temp = temp -> next;
         count++;
     }
-
     cout << "the length of linked list is: " << count << endl;  
     return count;
+}
+
+int checkexist(Node* head, int value){
+    Node* temp = head;
+
+    while(temp != nullptr){
+        if(temp -> data == value)  return 1;
+        temp = temp -> next;        
+    }
+
+    return 0;
 }
 
 int main () {
@@ -53,6 +62,8 @@ int main () {
     cout << endl;
 
     lenghtofll(first);
+
+    cout << "1 if the value exists in linked list, 0 if not: " << checkexist(first, 20) << endl;
 
     return 0;
 }
