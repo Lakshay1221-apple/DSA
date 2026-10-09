@@ -1,15 +1,15 @@
 #include <iostream>
 using namespace std;
 
-struct Node{
+struct Node {
     int data;
     Node* next;
     Node* prev;
 
     Node(int value){
         data = value;
-        prev = nullptr;
         next = nullptr;
+        prev = nullptr;
     }
 };
 
@@ -26,7 +26,7 @@ void display_forward(Node* head){
     cout << endl;
 };
 
-void display_backward(Node* head){
+void backward_display(Node* head){
     cout << "backward display of the double linked list: \n";
 
     if(head == nullptr) return;
@@ -43,31 +43,46 @@ void display_backward(Node* head){
         temp = temp -> prev;
     }
     cout << endl;
-}
+};
 
-int insert_head(Node* &head, int value){
-
+int insert_tail(Node* &head, int value){
     Node* newNode = new Node(value);
-    
-    newNode -> next = head;
 
-    if(head != nullptr){ // if the list is not empty, set the previous pointer of the current head to the new node  
-        head -> prev = newNode;
+    if(head == nullptr){
+        head = newNode;
+        return 0;
     }
 
-    head = newNode;    
+    Node* temp = head;
+    while(temp -> next != nullptr){
+        temp = temp -> next;
+    }
+
+    temp -> next = newNode;
+    newNode -> prev = temp;
+
+    head = head; // head remains unchanged, but this line is redundant and can be omitted
+
     return 0;
 }
 
-int main () {
-    Node* head = nullptr;
+int main() {
+    Node* head = new Node(10);
+    head -> next = new Node(20);
+    head -> next -> prev = head;
+    head -> next -> next = new Node(30);
+    head -> next -> next -> prev = head -> next;
 
-    insert_head(head, 10);
-    insert_head(head, 20);
-    insert_head(head, 30);
-
+    cout << "Before insertion at tail: " << endl;
     display_forward(head);
-    display_backward(head);
+    backward_display(head);
+
+    insert_tail(head, 40);
+
+    cout << "After insertion at tail: " << endl;
+    display_forward(head);
+    backward_display(head);
 
     return 0;
 }
+
