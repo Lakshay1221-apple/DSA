@@ -16,7 +16,7 @@ int transversal(Node* head){
     while (temp != nullptr){
         cout << temp -> data << " ";
         temp = temp -> next;
-    };
+    }
     cout << endl;
     return 0;
 }
