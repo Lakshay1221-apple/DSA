@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <queue>
 
 class Node {
     public:
@@ -39,13 +40,39 @@ void takeInput(Node* &root){
     }
 }
 
+void levelOrderTraversal(Node* root){
+    
+    if (root == nullptr){
+        return;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    while (!q.empty()){
+        Node* current = q.front();
+        q.pop();
+
+        cout << current -> data << " ";
+
+        if (current -> left){
+            q.push(current -> left);
+        }
+
+        if (current -> right){
+            q.push(current -> right);
+        }
+    }
+}
+
 int main (){
     Node* root = nullptr;
 
     cout << "Enter the data for the root" << endl;
     takeInput(root);
 
-    
+    cout << "Level order traversal: ";
+    levelOrderTraversal(root);   
 
     return 0 ;
 }
