@@ -24,7 +24,7 @@ Node* insert(Node* root , int d){
     }
 
     if(d < root -> data){
-        root -> left = insert(root -> left, d);
+        root -> left = insert(root -> left,  d);
     }
 
     if(d > root -> data){
@@ -41,6 +41,62 @@ void takeInput(Node* &root){
     while(data != -1){
         insert(root, data);
         cin >> data;
+    }
+}
+
+Node* findMin(Node* root){ // finding min value 
+
+    while(root -> left != nullptr){
+        root = root -> left;
+    }
+
+    return root;
+}
+
+Node* deleteNode(Node* root, int val){
+
+    if(root == nullptr){
+        return root;
+    };
+
+    if(val < root -> data){
+        root -> left = deleteNode(root -> left,val);
+    }
+
+    else if(val > root -> data){ 
+        root -> right = deleteNode(root -> right ,val);
+    }
+
+    else {
+        // no child 
+        if(root -> left == nullptr && root -> right == nullptr){
+            delete root;
+            return nullptr;
+        }
+
+        // only right child 
+
+        else if(root ->left == nullptr){
+            Node* temp = root -> right;
+            delete root;
+            return temp;
+        }
+
+        // only left child 
+
+        else if (root -> right == nullptr){
+            Node* temp = root -> left;
+            delete root;
+            return temp;
+        }
+
+        // two children 
+
+        else {
+            Node* temp = findMin(root -> right);
+            root -> data = temp -> data;
+            root -> right = deleteNode(root -> right, temp -> data);
+        }
     }
 }
 
