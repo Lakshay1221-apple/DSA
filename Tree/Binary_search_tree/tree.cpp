@@ -18,16 +18,17 @@ class Node {
 Node* insertIntoBst(Node* root, int d){
 
     if(root == nullptr){
-        root = new Node(d);
+        root =  new Node(d);
         return root;
-    }
+    }       
+
+    if(d > root -> data){
+        insertIntoBst(root -> right, d);
+    };
 
     if(d < root -> data){
         insertIntoBst(root -> left, d);
-    }
-    else{
-        insertIntoBst(root -> right, d);
-    }
+    };
 }
 
 void takeInput(Node* &root){
@@ -63,6 +64,7 @@ void levelOrderTraversal(Node* root) {
 
         else {
             cout << temp->data << " ";
+
             if (temp->left != nullptr) {
                 q.push(temp->left);
             }
@@ -71,6 +73,39 @@ void levelOrderTraversal(Node* root) {
             }
         }
     }
+}
+
+void inOrder(Node* root){
+    if(root == nullptr){
+        return;
+    }
+
+    inOrder(root -> left);
+    cout << root -> data << " ";
+    inOrder(root -> right);
+}
+
+void preOrder(Node* root){
+
+    if(root == nullptr){
+        return;
+    }
+
+    cout << root -> data << " ";
+
+    preOrder(root -> left);
+    preOrder(root -> right);
+}
+
+void postOrder(Node* root){
+
+    if(root == nullptr){
+        return;
+    }
+
+    postOrder(root -> left);
+    postOrder(root -> right);
+    cout << root -> data << " ";    
 }
 
 int main (){
