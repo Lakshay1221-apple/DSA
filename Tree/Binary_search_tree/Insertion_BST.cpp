@@ -73,7 +73,7 @@ void levelOrderTraversal(Node* root){
             }
         }
     }
-});
+};
 
 int main (){
     Node* root = nullptr;
