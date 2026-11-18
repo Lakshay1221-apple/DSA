@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+#include <queue>
+
+// left order transversal -> LNR (left , node, right)
 
 class node{
 
@@ -13,6 +16,19 @@ class node{
         this -> left = nullptr;
         this -> right = nullptr;
     }
+};
+
+void inOrder(node* root){
+
+    // base case 
+    if(root == nullptr){
+        return;
+    }
+
+    inOrder(root -> left);
+    cout << root -> data << " ";
+
+    inOrder(root -> right);    
 };
 
 node* buildTree(node* root){
@@ -34,13 +50,18 @@ node* buildTree(node* root){
     root -> right = buildTree(root -> right);
 
     return root;
-}
+} 
+
+
 
 int main(){
 
     node* root = nullptr;
 
     root = buildTree(root);
+
+    cout << "Inorder transversal is: " << endl; 
+    inOrder(root);
 
     return 0;   
 }
