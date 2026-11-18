@@ -57,11 +57,15 @@ Node* deleteNode(Node* root, int val){
 
     if(root == nullptr){
         return root;
-    };
+    }; 
+
+    // most left 
 
     if(val < root -> data){
         root -> left = deleteNode(root -> left,val);
     }
+
+    // most right 
 
     else if(val > root -> data){ 
         root -> right = deleteNode(root -> right ,val);
