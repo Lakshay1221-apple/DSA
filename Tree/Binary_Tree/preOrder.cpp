@@ -2,8 +2,6 @@
 using namespace std;
 
 // pre order transversal -> NLR (node, left, right)
-
-
 class node{
     
     public:

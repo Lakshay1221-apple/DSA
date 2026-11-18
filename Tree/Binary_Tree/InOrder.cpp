@@ -2,7 +2,7 @@
 using namespace std;
 #include <queue>
 
-// left order transversal -> LNR (left , node, right)
+// in order transversal -> LNR (left , node, right)
 
 class node{
 
