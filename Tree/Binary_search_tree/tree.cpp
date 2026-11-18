@@ -40,27 +40,35 @@ void takeInput(Node* &root){
     }
 }
 
-void levelOrderTraversal(Node* root){
-    
-    if (root == nullptr){
+void levelOrderTraversal(Node* root) {
+
+    if (root == nullptr) {
         return;
     }
 
     queue<Node*> q;
     q.push(root);
+    q.push(nullptr);
 
-    while (!q.empty()){
-        Node* current = q.front();
+    while (!q.empty()) {
+        Node* temp = q.front();
         q.pop();
 
-        cout << current -> data << " ";
-
-        if (current -> left){
-            q.push(current -> left);
+        if (temp == nullptr) {
+            cout << endl;
+            if (!q.empty()) {
+                q.push(nullptr);
+            }
         }
 
-        if (current -> right){
-            q.push(current -> right);
+        else {
+            cout << temp->data << " ";
+            if (temp->left != nullptr) {
+                q.push(temp->left);
+            }
+            if (temp->right != nullptr) {
+                q.push(temp->right);
+            }
         }
     }
 }
