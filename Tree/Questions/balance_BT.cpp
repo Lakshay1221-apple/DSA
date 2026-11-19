@@ -57,7 +57,9 @@ class checkBalance{
         }
 
     bool isBalanced(Node* root){
+
         bool ans = true;    
+        
         checkBalanceTree(root, ans);
         return ans;
     };
