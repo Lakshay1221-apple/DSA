@@ -122,6 +122,12 @@ int main(){
 
     cout << endl;
 
+    cout << "Diameter of the tree is: " << endl;
+    Diameter d;
+    cout << d.diameter(root) << endl;
+
+    cout << endl;
+
     return 0;
 };
 
