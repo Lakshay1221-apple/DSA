@@ -77,19 +77,19 @@ class oNDiameter{
 
         if(root == nullptr){
             height = 0;
-            return 0;
-        };
+            return 0;        
+        }
 
-    int lh = 0, rh = 0;
+        int lh = 0, rh = 0;
 
-    int left = solve(root -> left, lh);
-    int right = solve(root -> right, rh);
+        int left = solve(root -> left, lh);
+        int right = solve(root -> right, rh);
 
-    int op1 = left;
-    int op2 = right;
-    int op3 = lh + rh + 1;
+        int op1 = left;
+        int op2 = right;
+        int op3 = lh + rh + 1;
 
-    return max(op1, max(op2, op3));    
+        return max(op1, max(op2, op3));
     }
 
     int diameter(Node* root){
