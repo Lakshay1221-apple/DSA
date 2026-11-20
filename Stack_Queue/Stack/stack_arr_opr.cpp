@@ -1,71 +1,94 @@
 #include <iostream>
 using namespace std;
 
-const int MAX = 5;
+class Stack{
 
-class Stack {
-private:
-    int arr[MAX];
-    int top;
+    private:
+        int top;
+        int* arr;
+        int capacity;
 
-public:
-    Stack() {
+    public:
+
+    Stack(int size ){
+        capacity = size;
         top = -1;
+        arr = new int [capacity];
     }
 
-    void push(int value) {
-        if (top == MAX - 1) {
-            cout << "Stack Overflow\n";
-            return;
-        }
+    void push(int x){
 
-        arr[++top] = value;
-        cout << value << " pushed\n";
+        if(arr[top] == capacity - 1){
+            cout << "stack overflow" << endl;
+        };
+
+        arr[++top] = x; 
+        cout << "pushed element: " << x << endl;
+        }
+    
+    void pop(){
+
+        if(top == -1){
+            cout << "stack underflow" << endl;
+        };
+
+        cout << "popped element: " << arr[top--] << endl;
     }
 
-    void pop() {
-        if (top == -1) {
-            cout << "Stack Underflow\n";
-            return;
-        }
+    void traversal(){
+        cout << "Elements in the stack are: ";
 
-        cout << arr[top] << " popped\n";
-        top--;
-    }
+        if(top == -1){
+            cout << "stack is empty"  << endl;
+        };
 
-    void peek() {
-        if (top == -1) {
-            cout << "Stack is empty\n";
-            return;
-        }
-
-        cout << "Top: " << arr[top] << '\n';
-    }
-
-    void traverse() {
-        if (top == -1) {
-            cout << "Stack is empty\n";
-            return;
-        }
-
-        for (int i = top; i >= 0; i--) {
+        for(int i = top; i >= 0; i--){
             cout << arr[i] << " ";
         }
-        cout << '\n';
+        cout << endl;
     }
+
+    void peek(){
+        if(top == -1){
+            cout << "stack is empty" << endl;
+        };
+
+        cout << "top element is: " << arr[top] << endl;
+    }
+
+    ~Stack() {
+        delete[] arr;
+    }
+
+
 };
 
 int main() {
-    Stack s;
 
-    s.push(10);
-    s.push(20);
-    s.push(30);
+    int size;
 
-    s.traverse();  // 30 20 10
-    s.peek();      // Top: 30
-    s.pop();       // 30 popped
-    s.traverse();  // 10
-    s.peek();      // Top: 10
-    return 0;
+    cout << "Enter the size of the stack: ";
+    cin >> size;
+
+    if(size <= 0) {
+        cout << "Invalid stack size. Please enter a positive integer." << endl;
+        return 1; // Exit the program with an error code
+    }
+
+    Stack s(size);
+
+    cout << "Enter the elements to push into the stack: ";
+    for(int i = 0; i < size; i++){
+        int element;
+        cin >> element;
+        s.push(element);
+    }
+
+
+    s.traversal();
+    s.pop();
+    s.traversal();
 }
+    
+
+
