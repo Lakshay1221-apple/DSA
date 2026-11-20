@@ -38,7 +38,7 @@ public:
     }
 
     ~Stack() {
-        delete[] arr;
+        delete[] arr; 
     }
 };
 
