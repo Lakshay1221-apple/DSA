@@ -73,5 +73,13 @@ int main (){
 
     PostOrder(root);
 
+    sum(root);
+
+    cout << endl;
+    cout << "After Sum of all child nodes" << endl;
+    PostOrder(root);
+
+    cout << endl;
+
     return 0;
 }
