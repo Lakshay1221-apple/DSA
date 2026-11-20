@@ -40,15 +40,15 @@ void sum(Node* root){
 
     int s = 0;
 
-    if(root -> left != nullptr){
+    if(root -> left != nullptr){ // left node 
         s += root -> left -> data;
     }
 
-    if(root -> right != nullptr){
+    if(root -> right != nullptr){ // right node 
         s += root -> right -> data;
     }
 
-    root -> data += s;    
+    root -> data += s;     // current node 
 
     sum(root -> left);
     sum(root -> right);
